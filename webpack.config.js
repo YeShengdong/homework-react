@@ -1,0 +1,90 @@
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+module.exports = (env, options) => {
+	const isProduction = env && env.prod ? true : false
+
+	const config = {
+		context: path.resolve(__dirname, 'src'),
+		entry: './client/index',
+		mode: isProduction ? 'production' : 'development',
+		devtool: isProduction ? 'none' : 'source-map',
+
+		output: {
+			filename: 'bundle.js',
+			path: path.resolve(__dirname, 'dist')
+		},
+
+		resolve: {
+			extensions: ['.js', '.jsx']
+		},
+
+		module: {
+			rules: [
+				{
+		            test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+		            loader: 'url-loader',
+		            options: {
+						name: '[path][name].[ext]?[hash]'
+					}
+		        },
+				{
+					test: /\.js?$/,
+					loader: 'babel-loader',
+					exclude: /node_modules/,
+					options: {
+						presets: ['es2015', 'react']
+					}
+				},
+		      	{
+					test: /\.css$/,
+					use: ExtractTextPlugin.extract({
+						fallback: 'style-loader',
+						use: [
+							{
+								loader: 'css-loader',
+								options: {
+		                            minimize: isProduction
+		                        }
+							}
+						]
+					})
+				}
+			]
+		},
+
+		plugins: [
+			new ExtractTextPlugin('[name].css'),
+			new HtmlWebpackPlugin({
+				title: 'Homework',
+				hash: true,
+				template: path.resolve(__dirname, './index.html')
+			})
+		]
+	}
+
+	if (isProduction) {
+		config.optimization = {
+			splitChunks: {
+				cacheGroups: {
+					commons: {
+            			name: 'commons',
+						chunks: 'all',
+						minSize: 0,
+						minChunks: 2
+					}
+				}
+			}
+		}
+	} else {
+		config.plugins.push(new webpack.HotModuleReplacementPlugin())
+		config.devServer = {
+			open: true,
+			hot: true
+		}
+	}
+
+	return config
+}
