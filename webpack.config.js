@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const alias = require('./webpack.resolve.alias')
 
 module.exports = (env, options) => {
 	const isProduction = env && env.prod ? true : false
@@ -18,7 +19,8 @@ module.exports = (env, options) => {
 		},
 
 		resolve: {
-			extensions: ['.js', '.jsx']
+			extensions: ['.js', '.jsx'],
+			alias: alias
 		},
 
 		module: {
@@ -31,7 +33,7 @@ module.exports = (env, options) => {
 					}
 		        },
 				{
-					test: /\.js?$/,
+					test: /\.jsx?$/,
 					loader: 'babel-loader',
 					exclude: /node_modules/,
 					options: {
@@ -39,12 +41,18 @@ module.exports = (env, options) => {
 					}
 				},
 		      	{
-					test: /\.css$/,
+					test: /\.scss$/,
 					use: ExtractTextPlugin.extract({
 						fallback: 'style-loader',
 						use: [
 							{
 								loader: 'css-loader',
+								options: {
+		                            minimize: isProduction
+		                        }
+							},
+							{
+								loader: 'sass-loader',
 								options: {
 		                            minimize: isProduction
 		                        }

@@ -1,2 +1,2 @@
-import './tasks/task-1'
-import './main.css'
+import './app.jsx'
+import './main.scss'

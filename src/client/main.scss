@@ -1,0 +1,18 @@
+@import './public/styles/_vars.scss';
+@import './public/styles/mixins/_common.scss';
+@import './public/styles/_common.scss';
+
+/*
+ * Components CSS
+ */
+@import './components/common/Header.scss';
+@import './components/common/Footer.scss';
+@import './components/form/Radio.scss';
+@import './components/movie/MovieList.scss';
+@import './components/movie/MovieSearch.scss';
+@import './components/movie/MovieCover.scss';
+
+/*
+ * Pages CSS
+ */
+@import './pages/movie/MovieListPage.scss';
