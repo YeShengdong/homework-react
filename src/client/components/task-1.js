@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from "react-dom"
 
 const msg = 'Hello World'
 
@@ -25,16 +24,4 @@ function C4(props) {
 	return <h4>{msg}</h4>
 }
 
-const App = props => (
-	<React.Fragment>
-		{C1}
-		<C2 />
-		<C3 />
-		<C4 />
-	</React.Fragment>
-)
-
-ReactDOM.render(
-	<App />,
-	document.getElementById('root')
-)
+export { C1, C2, C3, C4 }
