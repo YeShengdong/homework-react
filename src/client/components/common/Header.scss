@@ -1,0 +1,18 @@
+header {
+	background-color: $bgTranslucentBlack;
+	padding: 15px 40px;
+	position: relative;
+
+	p {
+		color: $colorPink;
+	}
+
+	.search-btn {
+		@include positionVerticalCenter;
+		background-color: $colorWhite;
+		color: $colorPink;
+		padding: 5px 10px;
+		display: inline-block;
+		right: 40px;
+	}
+}

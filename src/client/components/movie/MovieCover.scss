@@ -1,0 +1,38 @@
+.movie-details-section {
+	background-color: $bgTranslucentBlack;
+	padding: 20px 40px;
+
+	.cover-box {
+		width: 160px;
+		height: 200px;
+		margin-right: 45px;
+		text-align: center;
+	}
+
+	.cover-box img {
+		max-width: 100%;
+	}
+
+	.type {
+		margin-bottom: 10px;
+	}
+
+	.movie-details {
+		flex: 1;
+		color: $colorGray;
+
+		h2 {
+			color: $colorPink;
+		}
+	}
+
+	.time-info {
+		color: #fff;
+		margin-bottom: 15px;
+	}
+
+	.duration {
+		flex: 1;
+		margin-left: 20px;
+	}
+}
