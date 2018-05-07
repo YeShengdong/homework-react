@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --env.prod && node ./src/server/app",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",

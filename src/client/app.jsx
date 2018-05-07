@@ -16,7 +16,4 @@ const App = props => (
 	</React.Fragment>
 )
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('root')
-)
+export default App

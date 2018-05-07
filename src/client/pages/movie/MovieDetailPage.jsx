@@ -1,8 +1,9 @@
 import React from 'react'
+import Header from 'Header'
+import Footer from 'Footer'
+
 import { MovieCover } from 'MovieCover'
 import { MovieList } from 'MovieList'
-import { Header } from 'Header'
-import { Footer } from 'Footer'
 
 export class MovieDetailPage extends React.Component {
 	constructor(props) {

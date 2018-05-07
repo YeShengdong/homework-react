@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-function Footer(props) {
+export default function Footer(props) {
 	return (
 		<React.Fragment>
 			<footer>
@@ -10,5 +10,3 @@ function Footer(props) {
 		</React.Fragment>
 	)
 }
-
-export { Footer }

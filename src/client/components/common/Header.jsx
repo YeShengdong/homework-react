@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-function Header(props) {
+export default function Header(props) {
 	return (
 		<React.Fragment>
 			<header>
@@ -13,5 +13,3 @@ function Header(props) {
 		</React.Fragment>
 	)
 }
-
-export { Header }
