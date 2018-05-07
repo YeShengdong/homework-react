@@ -1,9 +1,9 @@
 import React from 'react'
+
 import Header from 'Header'
 import Footer from 'Footer'
-
-import { MovieSearch } from 'MovieSearch'
-import { MovieList } from 'MovieList'
+import MovieSearch from 'MovieSearch'
+import MovieList from 'MovieList'
 
 export class MovieListPage extends React.Component {
 	constructor(props) {

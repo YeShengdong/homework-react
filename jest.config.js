@@ -5,9 +5,9 @@ module.exports = {
 	// rootDir: path.resolve(__dirname, '../'),  
 	verbose: true,
 	collectCoverage: true, // 是否收集测试时的覆盖率信息  
-	collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,mjs}'], // 哪些文件需要收集覆盖率信息  
+	collectCoverageFrom: ['<rootDir>/src/client/**/*.{js,jsx,mjs}'], // 哪些文件需要收集覆盖率信息  
 	coverageDirectory: '<rootDir>/jest/coverage', // 输出覆盖信息文件的目录  
-	coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/src/index.jsx'], // 统计覆盖信息时需要忽略的文件  
+	coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/src/client/index.jsx'], // 统计覆盖信息时需要忽略的文件  
 	// moduleNameMapper: { // 主要用于与webpack的resolve.alias匹配，注意正则写法  
 	// 	'^src(.*)$': '<rootDir>/src$1',  
 	// // '^util(.*)$': '<rootDir>/src/util$1',  
@@ -15,8 +15,8 @@ module.exports = {
 	// // '^components(.*)$': '<rootDir>/src/components$1',  
 	// },
 	moduleNameMapper: alias,
-	// setupFiles: ['<rootDir>/test/setup.js'], // 运行测试前可运行的脚本，比如注册enzyme的兼容
-	setupTestFrameworkScriptFile: '<rootDir>/jest/setup.js', // 运行测试前可运行的脚本，比如注册enzyme的兼容  
+	setupFiles: ['<rootDir>/jest/setup.js'], // 运行测试前可运行的脚本，比如注册enzyme的兼容
+	// setupTestFrameworkScriptFile: '<rootDir>/jest/setup.js', // 运行测试前可运行的脚本，比如注册enzyme的兼容  
 	// testMatch: [ // 匹配的测试文件  
 	//   '<rootDir>/test/**/?(*.)(spec|test).{js,jsx,mjs}',  
 	//   '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',  

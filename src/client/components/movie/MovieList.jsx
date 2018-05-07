@@ -37,4 +37,4 @@ function MovieListItem(props) {
 	)
 }
 
-export { MovieList }
+export default MovieList

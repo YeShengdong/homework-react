@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class MovieCover extends React.Component {
+export default class MovieCover extends React.Component {
 	render() {
 		return (
 			<section className="movie-details-section flex">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { LabelRadio } from 'Radio'
 
-export class MovieSearch extends React.Component {
+export default class MovieSearch extends React.Component {
 	constructor(props) {
 		super(props)
 
