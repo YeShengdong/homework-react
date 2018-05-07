@@ -4,6 +4,7 @@ const path = require('path')
 
 app.use(express.static('dist'))
 app.use('/static', express.static('static'))
+app.use('/test-report', express.static('jest/coverage/lcov-report'))
 // app.get('/', (req, res) => res.send('Hello World'))
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

@@ -8,7 +8,7 @@ import { MovieDetailPage } from 'MovieDetailPage'
 const App = props => (
 	<React.Fragment>
 		<ErrorBoundary>
-			<h1>List Page</h1>
+			<h1>List</h1>
 			<MovieListPage />
 			<h1>Detail Page</h1>
 			<MovieDetailPage />

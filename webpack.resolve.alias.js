@@ -10,9 +10,10 @@ module.exports = {
 	/*
 	 * Pages
 	 */
+	App: clientDir + '/App',
+	ErrorBoundary: pageDir + 'ErrorBoundary',
 	MovieListPage: pageDir + 'movie/MovieListPage',
 	MovieDetailPage: pageDir + 'movie/MovieDetailPage',
-	ErrorBoundary: pageDir + 'ErrorBoundary',
 
 	/*
 	 * Components
