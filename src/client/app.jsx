@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 import { ErrorBoundary } from 'ErrorBoundary'
 import { MovieListPage } from 'MovieListPage'
@@ -16,7 +15,4 @@ const App = props => (
 	</React.Fragment>
 )
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('root')
-)
+export default App
