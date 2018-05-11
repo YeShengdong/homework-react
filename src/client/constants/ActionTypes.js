@@ -1,0 +1,8 @@
+/*
+ * Movie Actions
+ */
+
+export const SEARCH_MOVIE = 'SEARCH_MOVIE'
+export const SET_SEARCH_MOVIE_TEXT = 'SET_SEARCH_MOVIE_TEXT'
+export const SET_SEARCH_MOVIE_TYPE = 'SET_SEARCH_MOVIE_TYPE'
+export const SET_SEARCH_MOVIE_SORT = 'SET_SEARCH_MOVIE_SORT'

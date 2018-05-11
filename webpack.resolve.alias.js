@@ -4,15 +4,19 @@ const path = require('path')
 const rootDir = __dirname
 const clientDir = path.join(rootDir, 'src/client')
 const pageDir = clientDir + '/pages/'
+const containerDir = clientDir + '/containers/'
 const componentDir = clientDir + '/components/'
 
 module.exports = {
+	ActionTypes: clientDir + '/constants/ActionTypes',
+	actions: clientDir + '/actions',
+
 	/*
 	 * Pages
 	 */
 	App: clientDir + '/App',
 	ErrorBoundary: pageDir + 'ErrorBoundary',
-	MovieListPage: pageDir + 'movie/MovieListPage',
+	MovieListPage: containerDir + 'movie/MovieListPage',
 	MovieDetailPage: pageDir + 'movie/MovieDetailPage',
 
 	/*
