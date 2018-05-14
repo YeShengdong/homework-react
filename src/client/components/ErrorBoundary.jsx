@@ -1,6 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {hasError: false}
@@ -19,3 +20,5 @@ export class ErrorBoundary extends React.Component {
 		return this.props.children
 	}
 }
+
+export default connect()(ErrorBoundary)

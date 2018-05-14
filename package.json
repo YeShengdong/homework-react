@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server",
     "build": "webpack --env.prod && node ./src/server/app",
     "test": "jest --coverage",
-    "updateSnapshot": "jest --updateSnapshot"
+    "jest:updateSnapshot": "jest --updateSnapshot"
   },
   "repository": {
     "type": "git",

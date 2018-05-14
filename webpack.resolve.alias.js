@@ -4,7 +4,6 @@ const path = require('path')
 const rootDir = __dirname
 const clientDir = path.join(rootDir, 'src/client')
 const libDir = clientDir + '/lib/'
-const pageDir = clientDir + '/pages/'
 const containerDir = clientDir + '/containers/'
 const componentDir = clientDir + '/components/'
 
@@ -15,7 +14,7 @@ module.exports = {
 	Config: clientDir + '/config',
 
 	/*
-	 *	Libraries
+	 * Libraries
 	 */
 	API: libDir + 'API.class',
 
@@ -26,9 +25,14 @@ module.exports = {
 	actions: clientDir + '/actions',
 
 	/*
+	 * Reducers
+	 */
+	reducers: clientDir + '/reducers',
+
+	/*
 	 * Containers
 	 */
-	
+	Root: containerDir + 'Root',
 	MovieListPage: containerDir + 'movie/MovieListPage',
 	MovieDetailPage: containerDir + 'movie/MovieDetailPage',
 

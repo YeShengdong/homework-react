@@ -1,11 +1,11 @@
 import React from 'react'
-
+import { connect } from 'react-redux'
 import Header from 'Header'
 import Footer from 'Footer'
 import MovieCover from 'MovieCover'
 import MovieList from 'MovieList'
 
-export class MovieDetailPage extends React.Component {
+class MovieDetailPage extends React.Component {
 	constructor(props) {
 		super(props)
 
@@ -30,3 +30,5 @@ export class MovieDetailPage extends React.Component {
 		)
 	}
 }
+
+export default connect()(MovieDetailPage)

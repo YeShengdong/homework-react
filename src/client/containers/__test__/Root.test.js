@@ -2,12 +2,12 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { shallow, mount } from 'enzyme'
 
-import App from 'App'
+import Root from 'Root'
 
-describe('<App />', () => {
+describe('<Root />', () => {
 	it('renders without crashing', () => {
 		const tree = renderer
-			.create(<App />)
+			.create(<Root />)
 			.toJSON()
 
 		expect(tree).toMatchSnapshot()
