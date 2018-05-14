@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/YeShengdong/homework-react#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "express": "^4.16.3",
     "react": "^16.3.2",

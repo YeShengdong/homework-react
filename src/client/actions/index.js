@@ -1,3 +1,4 @@
+import API from 'API'
 import { 
 	SEARCH_MOVIE,
 	SET_SEARCH_MOVIE_TEXT,
@@ -12,6 +13,16 @@ export const searchMovie = text => {
 		{title: 'MV3'},
 		{title: 'MV4'}
 	] : []
+
+	const reqParams = {
+		url: 'movies'
+	}
+
+	API.request(reqParams).then(doc => {
+		console.log('API doc', doc)
+	}).catch(e => {
+		console.log('API error', e)
+	})
 
 	return { type: SEARCH_MOVIE, movies }
 }

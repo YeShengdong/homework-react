@@ -3,25 +3,39 @@
 const path = require('path')
 const rootDir = __dirname
 const clientDir = path.join(rootDir, 'src/client')
+const libDir = clientDir + '/lib/'
 const pageDir = clientDir + '/pages/'
 const containerDir = clientDir + '/containers/'
 const componentDir = clientDir + '/components/'
 
 module.exports = {
+	/*
+	 * Config
+	 */
+	Config: clientDir + '/config',
+
+	/*
+	 *	Libraries
+	 */
+	API: libDir + 'API.class',
+
+	/*
+	 * Actions
+	 */
 	ActionTypes: clientDir + '/constants/ActionTypes',
 	actions: clientDir + '/actions',
 
 	/*
-	 * Pages
+	 * Containers
 	 */
-	App: clientDir + '/App',
-	ErrorBoundary: pageDir + 'ErrorBoundary',
+	
 	MovieListPage: containerDir + 'movie/MovieListPage',
-	MovieDetailPage: pageDir + 'movie/MovieDetailPage',
+	MovieDetailPage: containerDir + 'movie/MovieDetailPage',
 
 	/*
 	 * Components
 	 */
+	ErrorBoundary: componentDir + 'ErrorBoundary',
 	Header: componentDir + 'common/Header',
 	Footer: componentDir + 'common/Footer',
 	Radio: componentDir + 'form/Radio',
