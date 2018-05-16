@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { 
-	searchMovie,
+	fetchMovies,
 	setSearchText,
-	setSearchType,
-	setSearchSort
+	setSearchBy,
+	setSortBy
 } from 'actions'
 
 import Header from 'Header'
@@ -13,18 +13,6 @@ import MovieSearch from 'MovieSearch'
 import MovieList from 'MovieList'
 
 class MovieListPage extends React.Component {
-	constructor(props) {
-		super(props)
-
-		this.getMovies = this.getMovies.bind(this)
-	}
-
-	getMovies() {
-		console.log('this.props', this.props)
-
-		this.props.searchMovie(this.props.conditions.text)
-	}
-
 	render() {
 		const props = this.props
 
@@ -32,16 +20,16 @@ class MovieListPage extends React.Component {
 			<React.Fragment>
 				<Header />
 				<MovieSearch 
-					onSearch={this.getMovies} 
+					onSearch={props.fetchMovies} 
 					setSearchText={props.setSearchText}
-					setSearchType={props.setSearchType} 
-					setSearchSort={props.setSearchSort}
+					setSearchBy={props.setSearchBy} 
+					setSortBy={props.setSortBy}
 					conditions={props.conditions}
-					searchTypes={props.searchTypes}
-					sortTypes={props.sortTypes}
+					searchBys={props.searchBys}
+					sortBys={props.sortBys}
 					count={props.count}
 				/>
-				<MovieList listData={props.list} emptyMsg="No films found" />
+				<MovieList movies={props.list} />
 				<Footer />
 			</React.Fragment>
 		)
@@ -49,14 +37,13 @@ class MovieListPage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log('mapStateToProps', state.movie)
 	const obj = state.movie
 
 	return {
 		list: obj.list,
 		conditions: obj.conditions,
-		searchTypes: obj.searchTypes,
-		sortTypes: obj.sortTypes,
+		searchBys: obj.searchBys,
+		sortBys: obj.sortBys,
 		count: obj.count
 	}
 }
@@ -66,9 +53,9 @@ const mapStateToProps = (state) => {
 export default connect(
 	mapStateToProps, 
 	{ 
-		searchMovie,
+		fetchMovies,
 		setSearchText,
-		setSearchType,
-		setSearchSort
+		setSearchBy,
+		setSortBy
 	}
 )(MovieListPage)

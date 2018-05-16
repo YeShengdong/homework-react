@@ -1,8 +1,10 @@
 import {
-	SEARCH_MOVIE,
 	SET_SEARCH_MOVIE_TEXT,
-	SET_SEARCH_MOVIE_TYPE,
-	SET_SEARCH_MOVIE_SORT
+	SET_SEARCH_MOVIE_SEARCH_BY,
+	SET_SEARCH_MOVIE_SORT_BY,
+	FETCH_MOVIES,
+	FETCH_MOVIES_SUCCESS,
+	FETCH_MOVIES_FAILURE
 } from 'ActionTypes'
 
 const initialState = {
@@ -10,10 +12,11 @@ const initialState = {
 	count: 0,
 	conditions: {
 		text: '',
-		type: '',
-		sort: ''
+		searchBy: '',
+		sortBy: '',
+		sortOrder: 'desc'
 	},
-	searchTypes: [
+	searchBys: [
 		{
 			name: 'TITLE',
 			value: 'title'
@@ -23,7 +26,7 @@ const initialState = {
 			value: 'genres'
 		}
 	],
-	sortTypes: [
+	sortBys: [
 		{
 			name: 'release date',
 			value: 'release_date'
@@ -36,24 +39,25 @@ const initialState = {
 }
 
 const movie = (state = initialState, action) => {
-	console.log('CASE', action.type)
-	console.log('ACTION', action)
-	console.log('STATE', state)
-
 	switch (action.type) {
-		case SEARCH_MOVIE:
-			const list = action.movies
-
+		case SET_SEARCH_MOVIE_TEXT:
+			return objAssignConditions(state, { text: action.searchText })
+		case SET_SEARCH_MOVIE_SEARCH_BY:
+			return objAssignConditions(state, { searchBy: action.searchBy })
+		case SET_SEARCH_MOVIE_SORT_BY:
+			return objAssignConditions(state, { sortBy: action.sortBy })
+		case FETCH_MOVIES:
+			console.log('FETCH_MOVIES')
+			return state
+		case FETCH_MOVIES_SUCCESS:
+			const list = action.data.data
 			return Object.assign({}, state, {
 				list: list,
 				count: list.length
 			})
-		case SET_SEARCH_MOVIE_TEXT:
-			return objAssignConditions(state, { text: action.searchText })
-		case SET_SEARCH_MOVIE_TYPE:
-			return objAssignConditions(state, { type: action.searchType })
-		case SET_SEARCH_MOVIE_SORT:
-			return objAssignConditions(state, { sort: action.searchSort })
+		case FETCH_MOVIES_FAILURE:
+			console.log('FETCH_MOVIES_FAILURE')
+			return state
 		default:
 			return state
 	}

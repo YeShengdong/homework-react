@@ -1,24 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
-import rootReducer from 'reducers'
+// import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
+import rootReducer from 'reducers'
+import configureStore from 'store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import ErrorBoundary from 'ErrorBoundary'
 import MovieListPage from 'MovieListPage'
 import MovieDetailPage from 'MovieDetailPage'
 
-const store = createStore(rootReducer)
+// const store = createStore(
+// 	rootReducer, 
+// 	applyMiddleware(thunkMiddleware)
+// )
+
+const cStore = configureStore()
 const Root = props => (
-	<Provider store={store}>
-		<React.Fragment>
+	<Provider store={cStore.store}>
+		<PersistGate loading={null} persistor={cStore.persistor}>
 			<ErrorBoundary>
 				<h1>List</h1>
 				<MovieListPage />
 				<h1>Detail Page</h1>
 				<MovieDetailPage />
 			</ErrorBoundary>
-		</React.Fragment>
+		</PersistGate>
 	</Provider>
 )
 

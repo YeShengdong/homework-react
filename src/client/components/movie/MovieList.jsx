@@ -1,7 +1,16 @@
 import React from 'react'
 
 function MovieList(props) {
-	const list = props.listData || []
+	const movies = props.movies || []
+	// let movieListItems = []
+
+	// for (let key in movies) {
+	// 	movieListItems.push(<MovieListItem key={key} item={movies[key]} />)
+	// }
+
+	const movieListItems = movies.map((item, index) => {
+		return <MovieListItem key={index} item={item} />
+	})
 
 	return (
 			<div className="movie-list">
@@ -9,29 +18,31 @@ function MovieList(props) {
 					<div className="top-bar">
 						Fimls by Drama genre
 					</div>
-				}	
-		      	{list.length ? (
+				}
+		      	{Object.keys(movies).length ? (
 					<ul className="flex">
-						{list.map((item, index) =>
-							<MovieListItem key={index} item={item} />
-						)}
+						{movieListItems}
 					</ul>
 				) : (
-					<p className="emptyMsg">{props.emptyMsg}</p>
+					<p className="emptyMsg">No films found</p>
 				)}
 			</div>
 		)
 }
 
 function MovieListItem(props) {
+	const movie = props.item
+	const date = movie.release_date.split('-')[0]
+	const genres = movie.genres.join(' ')
+
 	return (
 		<React.Fragment>
 			<li>
 				<div className="image-box flex">
-					<img src="./static/images/g.jpg" />
+					<img src={movie.poster_path} />
 				</div>
-				<h3>{props.item.title}<span className="date">2018</span></h3>
-				<p className="genre">genre</p>
+				<h3>{movie.title}<span className="date">{date}</span></h3>
+				<p className="genres">{genres}</p>
 			</li>
 		</React.Fragment>
 	)

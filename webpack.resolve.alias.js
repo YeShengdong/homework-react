@@ -30,6 +30,11 @@ module.exports = {
 	reducers: clientDir + '/reducers',
 
 	/*
+	 * Store
+	 */
+	store: clientDir + '/store',
+
+	/*
 	 * Containers
 	 */
 	Root: containerDir + 'Root',

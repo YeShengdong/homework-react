@@ -6,8 +6,8 @@ export default class MovieSearch extends React.Component {
 		super(props)
 
 		this.handleTextChange = this.handleTextChange.bind(this)
-		this.handleSearchTypeChange = this.handleSearchTypeChange.bind(this)
-		this.handleSortTypeChange = this.handleSortTypeChange.bind(this)
+		this.handleSearchByChange = this.handleSearchByChange.bind(this)
+		this.handleSortByChange = this.handleSortByChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
@@ -15,12 +15,12 @@ export default class MovieSearch extends React.Component {
 		this.props.setSearchText(event.target.value)
 	}
 
-	handleSearchTypeChange(event) {
-		this.props.setSearchType(event.target.value)
+	handleSearchByChange(event) {
+		this.props.setSearchBy(event.target.value)
 	}
 
-	handleSortTypeChange(event) {
-		this.props.setSearchSort(event.target.value)
+	handleSortByChange(event) {
+		this.props.setSortBy(event.target.value)
 	}
 
 	handleSubmit(event) {
@@ -31,10 +31,10 @@ export default class MovieSearch extends React.Component {
 	render() {
 		const props = this.props
 		const conditions = props.conditions
-		const searchTypeRadios = props.searchTypes.map((item, index) => {
+		const searchByRadios = props.searchBys.map((item, index) => {
 			const name = 'searchType'
 			const id = `${name}-${index}`
-			const defaultChecked = conditions.type === item.value
+			const defaultChecked = conditions.searchBy === item.value
 
 			return <LabelRadio 
 						key={index} 
@@ -43,13 +43,13 @@ export default class MovieSearch extends React.Component {
 						labelName={item.name} 
 						value={item.value} 
 						defaultChecked={defaultChecked} 
-						onChange={this.handleSearchTypeChange} />
+						onChange={this.handleSearchByChange} />
 		})
 
-		const sortTypeRadios = props.sortTypes.map((item, index) => {
+		const sortByRadios = props.sortBys.map((item, index) => {
 			const name = 'sortType'
 			const id = `${name}-${index}`
-			const defaultChecked = conditions.sort === item.value
+			const defaultChecked = conditions.sortBy === item.value
 
 			return <LabelRadio 
 						key={index} 
@@ -58,7 +58,7 @@ export default class MovieSearch extends React.Component {
 						labelName={item.name} 
 						value={item.value} 
 						defaultChecked={defaultChecked} 
-						onChange={this.handleSortTypeChange} />
+						onChange={this.handleSortByChange} />
 		})
 
 		return (
@@ -68,7 +68,7 @@ export default class MovieSearch extends React.Component {
 					<input type="text" className="search-field" value={conditions.text} onChange={this.handleTextChange} />
 					<div className="search-by-box">
 						<span className="text">SEARCH BY</span>
-						{searchTypeRadios}
+						{searchByRadios}
 						<input type="submit" value="SEARCH" className="search-btn" />
 					</div>
 				</div>
@@ -76,7 +76,7 @@ export default class MovieSearch extends React.Component {
 					<div className="res-count">{props.count} movies found</div>
 					<div className="res-sort">
 						<span className="text">Sort by</span>
-						{sortTypeRadios}
+						{sortByRadios}
 					</div>
 				</div>
 			</form>

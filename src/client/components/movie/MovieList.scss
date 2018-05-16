@@ -18,9 +18,10 @@
 	}
 
 	.image-box {
-		height: 200px;
+		height: 280px;
 		overflow: hidden;
 		align-items: center;
+		margin-bottom: 10px;
 	}
 
 	.image-box img {
@@ -32,11 +33,14 @@
 
 	h3 {
 		position: relative;
+		padding-right: 50px;
+		margin-bottom: 3px;
 	}
 
 	.date {
-		@include positionVerticalCenter;
 		@include borderRadius;
+		position: absolute;
+		top: 0;
 		right: 0;
 		display: block;
 		border: 1px solid $colorGray;
@@ -44,7 +48,7 @@
 		font-size: 12px;
 	}
 
-	.genre {
+	.genres {
 		color: $colorDarkGray;
 	}
 
