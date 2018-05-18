@@ -15,12 +15,15 @@ export const setSearchText = searchText => {
 
 export const setSearchBy = searchBy => (dispatch, getState) => {
 	dispatch({ type: SET_SEARCH_MOVIE_SEARCH_BY, searchBy })
-	dispatch(fetchMovies()) 
+
+	if (getState().movie.conditions.text) {
+		dispatch(fetchMovies())
+	}
 }
 
 export const setSortBy = sortBy => (dispatch, getState) => {
 	dispatch({ type: SET_SEARCH_MOVIE_SORT_BY, sortBy })
-	dispatch(fetchMovies()) 
+	dispatch(fetchMovies())
 }
 
 export const fetchMovies = () => (dispatch, getState) => {
@@ -40,10 +43,6 @@ export const fetchMovies = () => (dispatch, getState) => {
 		if (conditions.searchBy) {
 			reqParams.data.searchBy = conditions.searchBy
 		}
-	}
-
-	if (conditions.searchBy) {
-		reqParams.data.searchBy = conditions.searchBy
 	}
 
 	if (conditions.sortBy) {
