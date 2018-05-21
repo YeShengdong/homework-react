@@ -1,5 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { 
+	fetchMovie
+} from 'actions'
+
 import Header from 'Header'
 import Footer from 'Footer'
 import MovieCover from 'MovieCover'
@@ -8,27 +12,36 @@ import MovieList from 'MovieList'
 class MovieDetailPage extends React.Component {
 	constructor(props) {
 		super(props)
-
-		this.state = {
-			movies:  [
-				{title: 'MV1'},
-				{title: 'MV2'},
-				{title: 'MV3'},
-				{title: 'MV4'}
-			]
-		}
 	}
 
 	render() {
+		const props = this.props
+
 		return (
 			<React.Fragment>
 				<Header showSearchLink={true} />
-				<MovieCover />
-				<MovieList listData={this.state.movies} emptyMsg="No films found" showTopBar={true} />
+				<MovieCover movie={props.movie} />
+				<MovieList movies={props.list} showTopBar={true} />
 				<Footer />
 			</React.Fragment>
 		)
 	}
 }
 
-export default connect()(MovieDetailPage)
+const mapStateToProps = (state) => {
+	const movie = state.movie
+
+	return {
+		list: movie.relateList,
+		movie: movie.detail
+	}
+}
+
+// const mapDispatchToProps = (dispatch) => {}
+
+export default connect(
+	mapStateToProps,
+	{ 
+		fetchMovie
+	}
+)(MovieDetailPage)

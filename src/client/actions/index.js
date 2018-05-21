@@ -4,9 +4,18 @@ import {
 	SET_SEARCH_MOVIE_TEXT,
 	SET_SEARCH_MOVIE_SEARCH_BY,
 	SET_SEARCH_MOVIE_SORT_BY,
+
 	FETCH_MOVIES,
 	FETCH_MOVIES_SUCCESS,
-	FETCH_MOVIES_FAILURE
+	FETCH_MOVIES_FAILURE,
+
+	FETCH_MOVIE,
+	FETCH_MOVIE_SUCCESS,
+	FETCH_MOVIE_FAILURE,
+
+	FETCH_RELATE_MOVIES,
+	FETCH_RELATE_MOVIES_SUCCESS,
+	FETCH_RELATE_MOVIES_FAILURE
 } from 'ActionTypes'
 
 export const setSearchText = searchText => {
@@ -58,14 +67,79 @@ export const fetchMovies = () => (dispatch, getState) => {
 			})
 }
 
-const fetchMoviesSuccess = json => {
+const fetchMoviesSuccess = json => (dispatch, getState) => {
 	// const data = json.data
 	// const movies = new schema.Entity('data')
 	// const normalizedData = normalize(json.data, {data: [movies]})
+	const id = json.data.data[0].id
 
-	return {
+	dispatch(fetchMovie(id))
+	dispatch({
 		type: FETCH_MOVIES_SUCCESS,
 		// movies: normalizedData.entities.data,
+		data: json.data
+	})
+	// return {
+	// 	type: FETCH_MOVIES_SUCCESS,
+	// 	data: json.data
+	// }
+}
+
+export const fetchMovie = id => (dispatch, getState) => {
+	dispatch({ type: FETCH_MOVIE })
+
+	// get by store
+	// const conditions = getState().movie.conditions
+	// todo...
+
+	const reqParams = {
+		url: `movies/${id}`
+	}
+
+	return API
+			.request(reqParams).then(res => {
+				dispatch(fetchMovieSuccess(res))
+				dispatch(fetchRelateMovies())
+			})
+			.catch(e => {
+				dispatch({ type: FETCH_MOVIE_FAILURE })
+			})
+}
+
+const fetchMovieSuccess = json => {
+	return {
+		type: FETCH_MOVIE_SUCCESS,
+		data: json.data
+	}
+}
+
+export const fetchRelateMovies = () => (dispatch, getState) => {
+	dispatch({ type: FETCH_RELATE_MOVIES })
+
+	const movie = getState().movie
+	const conditions = movie.conditions
+	const search = movie.detail.genres[0]
+	const reqParams = {
+		url: 'movies',
+		data: {
+			sortOrder: conditions.sortOrder,
+			search: search,
+			searchBy: 'genres'
+		}
+	}
+
+	return API
+			.request(reqParams).then(res => {
+				dispatch(fetchRelateMoviesSuccess(res))
+			})
+			.catch(e => {
+				dispatch({ type: FETCH_RELATE_MOVIES_FAILURE })
+			})
+}
+
+const fetchRelateMoviesSuccess = json => {
+	return {
+		type: FETCH_RELATE_MOVIES_SUCCESS,
 		data: json.data
 	}
 }

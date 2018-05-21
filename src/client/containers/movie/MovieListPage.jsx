@@ -37,14 +37,14 @@ class MovieListPage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	const obj = state.movie
+	const movie = state.movie
 
 	return {
-		list: obj.list,
-		conditions: obj.conditions,
-		searchBys: obj.searchBys,
-		sortBys: obj.sortBys,
-		count: obj.count
+		list: movie.list,
+		conditions: movie.conditions,
+		searchBys: movie.searchBys,
+		sortBys: movie.sortBys,
+		count: movie.count
 	}
 }
 

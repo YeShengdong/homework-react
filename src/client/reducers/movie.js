@@ -2,9 +2,18 @@ import {
 	SET_SEARCH_MOVIE_TEXT,
 	SET_SEARCH_MOVIE_SEARCH_BY,
 	SET_SEARCH_MOVIE_SORT_BY,
+
 	FETCH_MOVIES,
 	FETCH_MOVIES_SUCCESS,
-	FETCH_MOVIES_FAILURE
+	FETCH_MOVIES_FAILURE,
+
+	FETCH_MOVIE,
+	FETCH_MOVIE_SUCCESS,
+	FETCH_MOVIE_FAILURE,
+
+	FETCH_RELATE_MOVIES,
+	FETCH_RELATE_MOVIES_SUCCESS,
+	FETCH_RELATE_MOVIES_FAILURE
 } from 'ActionTypes'
 
 const initialState = {
@@ -35,7 +44,9 @@ const initialState = {
 			name: 'rating',
 			value: 'vote_average'
 		}
-	]
+	],
+	detail: {},
+	relateList: []
 }
 
 const movie = (state = initialState, action) => {
@@ -51,6 +62,7 @@ const movie = (state = initialState, action) => {
 			return state
 		case FETCH_MOVIES_SUCCESS:
 			const list = action.data.data
+
 			return Object.assign({}, state, {
 				list: list,
 				count: list.length
@@ -58,13 +70,29 @@ const movie = (state = initialState, action) => {
 		case FETCH_MOVIES_FAILURE:
 			console.log('FETCH_MOVIES_FAILURE')
 			return state
+		case FETCH_MOVIE:
+			console.log('FETCH_MOVIES')
+			return state
+		case FETCH_MOVIE_SUCCESS:
+			return Object.assign({}, state, { detail: action.data })
+		case FETCH_MOVIE_FAILURE:
+			console.log('FETCH_MOVIE_FAILURE')
+			return state
+		case FETCH_RELATE_MOVIES:
+			console.log('FETCH_RELATE_MOVIES')
+			return state
+		case FETCH_RELATE_MOVIES_SUCCESS:
+			return Object.assign({}, state, { relateList: action.data.data })
+		case FETCH_RELATE_MOVIES_FAILURE:
+			console.log('FETCH_RELATE_MOVIES_FAILURE')
+			return state				
 		default:
 			return state
 	}
 }
 
 const objAssignConditions = (state, obj) => {
-	const newConditions = Object.assign({}, state.conditions, obj)		
+	const newConditions = Object.assign({}, state.conditions, obj)
 
 	return Object.assign({}, state, {
 		conditions: newConditions
