@@ -40,6 +40,7 @@ module.exports = {
 	Root: containerDir + 'Root',
 	MovieListPage: containerDir + 'movie/MovieListPage',
 	MovieDetailPage: containerDir + 'movie/MovieDetailPage',
+	NotFound: containerDir + 'NotFound',
 
 	/*
 	 * Components

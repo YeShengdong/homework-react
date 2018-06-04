@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function MovieList(props) {
 	const movies = props.movies || []
@@ -38,11 +39,13 @@ function MovieListItem(props) {
 	return (
 		<React.Fragment>
 			<li>
-				<div className="image-box flex">
-					<img src={movie.poster_path} />
-				</div>
-				<h3>{movie.title}<span className="date">{date}</span></h3>
-				<p className="genres">{genres}</p>
+				<Link to="/film/123">
+					<div className="image-box flex">
+						<img src={movie.poster_path} />
+					</div>
+					<h3>{movie.title}<span className="date">{date}</span></h3>
+					<p className="genres">{genres}</p>
+				</Link>
 			</li>
 		</React.Fragment>
 	)

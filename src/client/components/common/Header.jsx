@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import { Link } from 'react-router-dom'
 
 export default function Header(props) {
 	return (
@@ -7,7 +8,7 @@ export default function Header(props) {
 			<header>
 				<p>netflixroulette</p>
 				{props.showSearchLink && 
-					<a href="#" className="search-btn">SEARCH</a>
+					<Link to="/"><button className="search-btn">SEARCH</button></Link>
 				}
 			</header>
 		</React.Fragment>

@@ -21,10 +21,7 @@ const Root = props => (
 	<Provider store={cStore.store}>
 		<PersistGate loading={null} persistor={cStore.persistor}>
 			<ErrorBoundary>
-				<h1>List</h1>
-				<MovieListPage />
-				<h1>Detail Page</h1>
-				<MovieDetailPage />
+				{props.children}
 			</ErrorBoundary>
 		</PersistGate>
 	</Provider>

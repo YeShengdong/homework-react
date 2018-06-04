@@ -87,7 +87,12 @@ module.exports = (env, options) => {
 		config.plugins.push(new webpack.HotModuleReplacementPlugin())
 		config.devServer = {
 			open: true,
-			hot: true
+			hot: true,
+	        // inline: true,
+	        // contentBase: './',
+	        // historyApiFallback: {
+	        //     index: './dist/index.html'
+	        // }
 		}
 	}
 
