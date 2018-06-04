@@ -35,11 +35,12 @@ function MovieListItem(props) {
 	const movie = props.item
 	const date = movie.release_date.split('-')[0]
 	const genres = movie.genres.join(' ')
+	const link = `/film/${movie.id}`
 
 	return (
 		<React.Fragment>
 			<li>
-				<Link to="/film/123">
+				<Link to={link}>
 					<div className="image-box flex">
 						<img src={movie.poster_path} />
 					</div>

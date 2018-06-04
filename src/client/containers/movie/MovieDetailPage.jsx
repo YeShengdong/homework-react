@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { 
-	fetchMovie
-} from 'actions'
-
+import { fetchMovie } from 'actions'
 import Header from 'Header'
 import Footer from 'Footer'
 import MovieCover from 'MovieCover'
@@ -13,6 +10,18 @@ class MovieDetailPage extends React.Component {
 	constructor(props) {
 		super(props)
 	}
+
+	componentDidMount() {
+		this.props.fetchMovie(this.props.match.params.id)
+	}
+
+    componentWillReceiveProps(nextProps) {
+    	const id = nextProps.match.params.id
+
+    	if (id !== this.props.match.params.id) {
+    		this.props.fetchMovie(id)
+    	}
+    }
 
 	render() {
 		const props = this.props
@@ -36,8 +45,6 @@ const mapStateToProps = (state) => {
 		movie: movie.detail
 	}
 }
-
-// const mapDispatchToProps = (dispatch) => {}
 
 export default connect(
 	mapStateToProps,

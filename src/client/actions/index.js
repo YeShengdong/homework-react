@@ -71,9 +71,9 @@ const fetchMoviesSuccess = json => (dispatch, getState) => {
 	// const data = json.data
 	// const movies = new schema.Entity('data')
 	// const normalizedData = normalize(json.data, {data: [movies]})
-	const id = json.data.data[0].id
+	// const id = json.data.data[0].id
 
-	dispatch(fetchMovie(id))
+	// dispatch(fetchMovie(id))
 	dispatch({
 		type: FETCH_MOVIES_SUCCESS,
 		// movies: normalizedData.entities.data,

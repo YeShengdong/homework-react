@@ -13,6 +13,40 @@ import MovieSearch from 'MovieSearch'
 import MovieList from 'MovieList'
 
 class MovieListPage extends React.Component {
+	constructor(props) {
+		super(props)
+
+		const searchText = this.props.match.params.text
+
+		if (searchText) {
+			this.props.setSearchText(searchText)
+			this.props.fetchMovies()
+		}
+
+		this.onSearch = this.onSearch.bind(this)
+	}
+
+    componentWillReceiveProps(nextProps) {
+    	const searchText = nextProps.match.params.text
+
+    	if (searchText !== this.props.match.params.text) {
+    		this.props.fetchMovies()
+    	}
+    }
+
+	onSearch() {
+		const props = this.props
+		const text = props.conditions.text
+
+		if (!text) {
+			alert('please enter the search text')
+
+			return
+		}
+
+		props.history.push('/search/' + text)
+	}
+
 	render() {
 		const props = this.props
 
@@ -20,7 +54,7 @@ class MovieListPage extends React.Component {
 			<React.Fragment>
 				<Header />
 				<MovieSearch 
-					onSearch={props.fetchMovies} 
+					onSearch={this.onSearch} 
 					setSearchText={props.setSearchText}
 					setSearchBy={props.setSearchBy} 
 					setSortBy={props.setSortBy}
