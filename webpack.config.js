@@ -88,11 +88,9 @@ module.exports = (env, options) => {
 		config.devServer = {
 			open: true,
 			hot: true,
-	        // inline: true,
-	        // contentBase: './',
-	        // historyApiFallback: {
-	        //     index: './dist/index.html'
-	        // }
+	        inline: true,
+	        contentBase: './',
+	        historyApiFallback: true
 		}
 	}
 
