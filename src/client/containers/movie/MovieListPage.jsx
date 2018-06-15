@@ -16,14 +16,16 @@ class MovieListPage extends React.Component {
 	constructor(props) {
 		super(props)
 
+		this.onSearch = this.onSearch.bind(this)
+	}
+
+	componentDidMount() {
 		const searchText = this.props.match.params.text
 
 		if (searchText) {
 			this.props.setSearchText(searchText)
 			this.props.fetchMovies()
 		}
-
-		this.onSearch = this.onSearch.bind(this)
 	}
 
     componentWillReceiveProps(nextProps) {

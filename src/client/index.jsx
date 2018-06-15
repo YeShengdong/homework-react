@@ -10,11 +10,11 @@ import NotFound from 'NotFound'
 
 import './main.scss'
 
-const hashHistory = history.createHashHistory()
+// const hashHistory = history.createHashHistory()
 
-hashHistory.listen((location) => {
-    console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
-})
+// hashHistory.listen((location) => {
+//     console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
+// })
 
 ReactDOM.render((
     <Router> 

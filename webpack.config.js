@@ -15,7 +15,8 @@ module.exports = (env, options) => {
 
 		output: {
 			filename: 'bundle.js',
-			path: path.resolve(__dirname, 'dist')
+			path: path.resolve(__dirname, './dist'),
+			publicPath: '/'
 		},
 
 		resolve: {
@@ -89,7 +90,7 @@ module.exports = (env, options) => {
 			open: true,
 			hot: true,
 	        inline: true,
-	        contentBase: './',
+	        contentBase: './dist/',
 	        historyApiFallback: true
 		}
 	}
