@@ -8,12 +8,13 @@ module.exports = (env, options) => {
 	const isProduction = env && env.prod ? true : false
 
 	const config = {
-		entry: './src/client/index',
+		entry: './src/client/client',
 		mode: isProduction ? 'production' : 'development',
 		devtool: isProduction ? 'none' : 'source-map',
 
 		output: {
-			filename: 'bundle.js',
+			filename: '[name].bundle.js',
+			chunkFilename: '[name].bundle.js',
 			path: path.resolve(__dirname, '../dist'),
 			publicPath: '/'
 		},

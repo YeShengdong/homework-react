@@ -39,10 +39,6 @@ class MovieDetailPage extends React.Component {
 	}
 }
 
-MovieDetailPage.defaultProps = {
-	loading: false
-}
-
 const mapStateToProps = (state) => {
 	const movie = state.movie
 

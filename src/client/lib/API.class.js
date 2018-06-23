@@ -16,7 +16,6 @@ class API {
 
 			for (let key in data) {
 				url += `${key}=${data[key]}&`
-				console.log('data[key]:', data[key])
 			}
 
 			url = url.substring(0, url.length - 1)

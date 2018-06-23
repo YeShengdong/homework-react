@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom'
 import Root from 'Root'
 // import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import * as history from 'history'
-import MovieListPage from 'MovieListPage'
-import MovieDetailPage from 'MovieDetailPage'
-import NotFound from 'NotFound'
+import Loadable from 'react-loadable';
+// import * as history from 'history'
+// import MovieListPage from 'MovieListPage'
+// import MovieDetailPage from 'MovieDetailPage'
+// import NotFound from 'NotFound'
+import Loader from 'Loader'
 
 import './main.scss'
 
@@ -15,6 +17,21 @@ import './main.scss'
 // hashHistory.listen((location) => {
 //     console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
 // })
+
+const MovieListPage = Loadable({
+    loader: () => import('MovieListPage'),
+    loading: Loader,
+})
+
+const MovieDetailPage = Loadable({
+    loader: () => import('MovieDetailPage'),
+    loading: Loader,
+})
+
+const NotFound = Loadable({
+    loader: () => import('NotFound'),
+    loading: Loader,
+})
 
 ReactDOM.render((
     <Router> 
