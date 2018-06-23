@@ -5,6 +5,7 @@ import Header from 'Header'
 import Footer from 'Footer'
 import MovieCover from 'MovieCover'
 import MovieList from 'MovieList'
+import Loader from 'Loader'
 
 class MovieDetailPage extends React.Component {
 	constructor(props) {
@@ -24,17 +25,22 @@ class MovieDetailPage extends React.Component {
     }
 
 	render() {
-		const props = this.props
+		const { movie, list, loading } = this.props
 
 		return (
 			<React.Fragment>
 				<Header showSearchLink={true} />
-				<MovieCover movie={props.movie} />
-				<MovieList movies={props.list} showTopBar={true} />
+				<MovieCover movie={movie} />
+				<MovieList movies={list} showTopBar={true} />
 				<Footer />
+				<Loader loading={loading} />
 			</React.Fragment>
 		)
 	}
+}
+
+MovieDetailPage.defaultProps = {
+	loading: false
 }
 
 const mapStateToProps = (state) => {
@@ -42,7 +48,8 @@ const mapStateToProps = (state) => {
 
 	return {
 		list: movie.relateList,
-		movie: movie.detail
+		movie: movie.detail,
+		loading: movie.loading
 	}
 }
 

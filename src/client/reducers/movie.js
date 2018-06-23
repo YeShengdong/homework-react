@@ -59,22 +59,24 @@ const movie = (state = initialState, action) => {
 			return objAssignConditions(state, { sortBy: action.sortBy })
 		case FETCH_MOVIES:
 			console.log('FETCH_MOVIES')
-			return state
+
+			return Object.assign({}, state, { loading: true })
 		case FETCH_MOVIES_SUCCESS:
 			const list = action.data.data
 
 			return Object.assign({}, state, {
 				list: list,
-				count: list.length
+				count: list.length,
+				loading: false
 			})
 		case FETCH_MOVIES_FAILURE:
 			console.log('FETCH_MOVIES_FAILURE')
 			return state
 		case FETCH_MOVIE:
 			console.log('FETCH_MOVIES')
-			return state
+			return Object.assign({}, state, { loading: true })
 		case FETCH_MOVIE_SUCCESS:
-			return Object.assign({}, state, { detail: action.data })
+			return Object.assign({}, state, { detail: action.data, loading: false })
 		case FETCH_MOVIE_FAILURE:
 			console.log('FETCH_MOVIE_FAILURE')
 			return state

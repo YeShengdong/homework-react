@@ -87,7 +87,6 @@ const fetchMoviesSuccess = json => (dispatch, getState) => {
 
 export const fetchMovie = id => (dispatch, getState) => {
 	dispatch({ type: FETCH_MOVIE })
-
 	// get by store
 	// const conditions = getState().movie.conditions
 	// todo...

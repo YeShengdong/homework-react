@@ -45,6 +45,7 @@ module.exports = {
 	/*
 	 * Components
 	 */
+	Loader: componentDir + 'loader/Loader',
 	ErrorBoundary: componentDir + 'ErrorBoundary',
 	Header: componentDir + 'common/Header',
 	Footer: componentDir + 'common/Footer',

@@ -11,6 +11,7 @@ import Header from 'Header'
 import Footer from 'Footer'
 import MovieSearch from 'MovieSearch'
 import MovieList from 'MovieList'
+import Loader from 'Loader'
 
 class MovieListPage extends React.Component {
 	constructor(props) {
@@ -50,26 +51,41 @@ class MovieListPage extends React.Component {
 	}
 
 	render() {
-		const props = this.props
+		const { 
+				setSearchText, 
+				setSearchBy, 
+				setSortBy, 
+				conditions, 
+				searchBys, 
+				sortBys, 
+				count,
+				list,
+				loading
+			} = this.props
 
 		return (
 			<React.Fragment>
 				<Header />
 				<MovieSearch 
 					onSearch={this.onSearch} 
-					setSearchText={props.setSearchText}
-					setSearchBy={props.setSearchBy} 
-					setSortBy={props.setSortBy}
-					conditions={props.conditions}
-					searchBys={props.searchBys}
-					sortBys={props.sortBys}
-					count={props.count}
+					setSearchText={setSearchText}
+					setSearchBy={setSearchBy} 
+					setSortBy={setSortBy}
+					conditions={conditions}
+					searchBys={searchBys}
+					sortBys={sortBys}
+					count={count}
 				/>
-				<MovieList movies={props.list} />
+				<MovieList movies={list} />
 				<Footer />
+				<Loader loading={loading} />
 			</React.Fragment>
 		)
 	}
+}
+
+MovieListPage.defaultProps = {
+	loading: false
 }
 
 const mapStateToProps = (state) => {
@@ -80,7 +96,8 @@ const mapStateToProps = (state) => {
 		conditions: movie.conditions,
 		searchBys: movie.searchBys,
 		sortBys: movie.sortBys,
-		count: movie.count
+		count: movie.count,
+		loading: movie.loading
 	}
 }
 
