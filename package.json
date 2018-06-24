@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "start": "babel-node ./src/server/app",
-    "build": "webpack --config ./webpack",
+    "dev": "cross-env NODE_ENV=development babel-node ./src/server/app",
+    "start": "cross-env NODE_ENV=production babel-node ./src/server/app",
+    "build": "cross-env NODE_ENV=development webpack --config ./webpack",
     "test": "jest --coverage",
     "jest:updateSnapshot": "jest --updateSnapshot"
   },
@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "cross-env": "^5.2.0",
     "express": "^4.16.3",
     "normalizr": "^3.2.4",
     "react": "^16.3.2",
