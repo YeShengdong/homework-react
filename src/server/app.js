@@ -6,7 +6,6 @@ import Loadable from 'react-loadable'
 import handleQuery from './middleware/handleQuery'
 import stats from '../../dist/react-loadable.json'
 import serverRenderer from '../../dist/serverRenderer'
-// import serverRenderer from '../client/serverRenderer'
 
 app.use(express.static('dist'))
 app.use('/static', express.static('static'))
