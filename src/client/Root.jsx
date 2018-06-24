@@ -5,24 +5,24 @@ import { Provider } from 'react-redux'
 import Loadable from 'react-loadable'
 import Loader from 'Loader'
 
-import MovieListPage from 'MovieListPage'
-import MovieDetailPage from 'MovieDetailPage'
-import NotFound from 'NotFound'
+// import MovieListPage from 'MovieListPage'
+// import MovieDetailPage from 'MovieDetailPage'
+// import NotFound from 'NotFound'
 
-// const MovieListPage = Loadable({
-//     loader: () => import('MovieListPage'),
-//     loading: Loader,
-// })
+const MovieListPage = Loadable({
+    loader: () => import('MovieListPage'),
+    loading: Loader,
+})
 
-// const MovieDetailPage = Loadable({
-//     loader: () => import('MovieDetailPage'),
-//     loading: Loader,
-// })
+const MovieDetailPage = Loadable({
+    loader: () => import('MovieDetailPage'),
+    loading: Loader,
+})
 
-// const NotFound = Loadable({
-//     loader: () => import('NotFound'),
-//     loading: Loader,
-// })
+const NotFound = Loadable({
+    loader: () => import('NotFound'),
+    loading: Loader,
+})
 
 const Root = ({
     Router, location, context, store,

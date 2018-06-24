@@ -4,13 +4,13 @@ import { StaticRouter } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
 import Root from './Root'
-import configureStore from './store'
+import configureStore from 'store'
 
 function renderHTML(html, bundles, preloadedState) {
     return `<!doctype html>
             <html>
             <head>
-                <meta charset=utf-8>
+                <meta charset="utf-8">
                 <title>React Server Side Rendering</title>
                 <link href="/main.css" rel="stylesheet" type="text/css">
             </head>
@@ -23,7 +23,7 @@ function renderHTML(html, bundles, preloadedState) {
                 </script>
                 <script src="/main.bundle.js"></script>
                 ${bundles.map(bundle => {
-                    return `<script src="/dist/${bundle.file}"></script>`
+                    return `<script src="/${bundle.file}"></script>`
                 }).join('\n')}
                 <script>window.main();</script>
             </body>
@@ -37,14 +37,6 @@ export default function serverRenderer(stats) {
         console.log('req.url=========', req.url)
 
         let modules = []
-        // const root = (
-        //     <Root
-        //         context={context}
-        //         location={req.url}
-        //         Router={StaticRouter}
-        //         store={store}
-        //     />
-        // )
 
         const htmlString = renderToString(
             <Loadable.Capture report={moduleName => modules.push(moduleName)}>
@@ -57,7 +49,7 @@ export default function serverRenderer(stats) {
             </Loadable.Capture>
         )
 
-        let bundles = getBundles(stats, modules)
+        const bundles = getBundles(stats, modules)
 
         console.log('modules===', modules)
         // context.url will contain the URL to redirect to if a <Redirect> was used

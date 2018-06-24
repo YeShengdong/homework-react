@@ -11,7 +11,7 @@ module.exports = (env, options) => {
 	const config = {
 		entry: './src/client/client',
 		mode: isProduction ? 'production' : 'development',
-		devtool: isProduction ? 'none' : 'source-map',
+		devtool: isProduction ? 'none' : 'none',
 
 		output: {
 			filename: '[name].bundle.js',
@@ -67,19 +67,7 @@ module.exports = (env, options) => {
 			new ReactLoadablePlugin({
 				filename: './dist/react-loadable.json',
 			})
-		],
-
-		optimization: {
-			splitChunks: {
-				cacheGroups: {
-					commons: {
-						name: 'manifest',
-						chunks: 'initial',
-						minChunks: 2
-					}
-				}
-			}
-		}
+		]
 	}
 
 	// if (isProduction) {

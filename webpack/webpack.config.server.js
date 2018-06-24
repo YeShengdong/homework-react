@@ -10,13 +10,14 @@ module.exports = (env, options) => {
 	const isProduction = env && env.prod ? true : false
 
 	const config = {
+		name: 'server',
+		target: 'node',
 		entry: './src/client/serverRenderer',
 		mode: isProduction ? 'production' : 'development',
-		devtool: isProduction ? 'none' : 'source-map',
+		devtool: isProduction ? 'none' : 'none',
  		externals: [nodeExternals()],
 		output: {
 			filename: 'serverRenderer.js',
-			chunkFilename: '[name].bundle.js',
 			libraryTarget: 'commonjs2',
 			path: path.resolve(__dirname, '../dist'),
 			publicPath: '/'
@@ -62,24 +63,6 @@ module.exports = (env, options) => {
 					})
 				}
 			]
-		},
-
-		plugins: [
-			new ReactLoadablePlugin({
-				filename: './dist/react-loadable.json',
-			})
-		],
-
-		optimization: {
-			splitChunks: {
-				cacheGroups: {
-					commons: {
-						name: 'manifest',
-						chunks: 'initial',
-						minChunks: 2
-					}
-				}
-			}
 		}
 	}
 
