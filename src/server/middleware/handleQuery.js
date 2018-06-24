@@ -1,8 +1,8 @@
-const checkQuery = (req, res , next) => {
+const handleQuery = (req, res , next) => {
     console.log('req.params.query', req.params.query)
     // handle query
 
     next()
 }
 
-export default checkQuery
+export default handleQuery

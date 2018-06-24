@@ -3,7 +3,7 @@ const app = express()
 const path = require('path')
 
 import Loadable from 'react-loadable'
-import checkQuery from './middleware/checkQuery'
+import handleQuery from './middleware/handleQuery'
 import stats from '../../dist/react-loadable.json'
 import serverRenderer from '../../dist/serverRenderer'
 // import serverRenderer from '../client/serverRenderer'
@@ -17,7 +17,7 @@ app.use('/test-report', express.static('jest/coverage/lcov-report'))
 //     console.log('pa', pa)
 //     res.sendFile(pa)
 // })
-app.use('/search/:query', checkQuery)
+app.use('/search/:query', handleQuery)
 app.use(serverRenderer(stats))
 
 Loadable.preloadAll().then(() => {
