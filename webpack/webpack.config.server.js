@@ -3,6 +3,7 @@ const webpack = require('webpack')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin
 const alias = require('../fileAlias')
 
 module.exports = (env, options) => {
@@ -15,6 +16,7 @@ module.exports = (env, options) => {
  		externals: [nodeExternals()],
 		output: {
 			filename: 'serverRenderer.js',
+			chunkFilename: '[name].bundle.js',
 			libraryTarget: 'commonjs2',
 			path: path.resolve(__dirname, '../dist'),
 			publicPath: '/'
@@ -60,6 +62,24 @@ module.exports = (env, options) => {
 					})
 				}
 			]
+		},
+
+		plugins: [
+			new ReactLoadablePlugin({
+				filename: './dist/react-loadable.json',
+			})
+		],
+
+		optimization: {
+			splitChunks: {
+				cacheGroups: {
+					commons: {
+						name: 'manifest',
+						chunks: 'initial',
+						minChunks: 2
+					}
+				}
+			}
 		}
 	}
 

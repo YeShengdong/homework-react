@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const { ReactLoadablePlugin } = require('react-loadable/webpack')
 const alias = require('../fileAlias')
 
 module.exports = (env, options) => {
@@ -63,7 +64,22 @@ module.exports = (env, options) => {
 
 		plugins: [
 			new ExtractTextPlugin('[name].css'),
-		]
+			new ReactLoadablePlugin({
+				filename: './dist/react-loadable.json',
+			})
+		],
+
+		optimization: {
+			splitChunks: {
+				cacheGroups: {
+					commons: {
+						name: 'manifest',
+						chunks: 'initial',
+						minChunks: 2
+					}
+				}
+			}
+		}
 	}
 
 	// if (isProduction) {

@@ -12,7 +12,6 @@ import NotFound from 'NotFound'
 // const MovieListPage = Loadable({
 //     loader: () => import('MovieListPage'),
 //     loading: Loader,
-//     serverSideRequirePath: path.join(__dirname, './containers/movie/MovieListPage')
 // })
 
 // const MovieDetailPage = Loadable({
@@ -28,16 +27,16 @@ import NotFound from 'NotFound'
 const Root = ({
     Router, location, context, store,
 }) => (
-    <Provider store={store}>
-        <Router location={location} context={context}>
+    <Router location={location} context={context}>
+        <Provider store={store}>
             <Switch>
                 <Route exact path="/" component={MovieListPage} />
                 <Route exact path="/search/:text" component={MovieListPage} />
                 <Route path="/film/:id" component={MovieDetailPage} />
                 <Route path="*" component={NotFound} />
             </Switch>
-        </Router>
-    </Provider>
+        </Provider>
+    </Router>
 )
 
 Root.defaultProps = {
@@ -45,4 +44,4 @@ Root.defaultProps = {
     context: null,
 }
 
-export default hot(module)(Root)
+export default Root

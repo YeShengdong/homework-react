@@ -1,7 +1,12 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const serverRenderer = require('../../dist/serverRenderer').default
+
+import Loadable from 'react-loadable'
+import checkQuery from './middleware/checkQuery'
+import stats from '../../dist/react-loadable.json'
+import serverRenderer from '../../dist/serverRenderer'
+// import serverRenderer from '../client/serverRenderer'
 
 app.use(express.static('dist'))
 app.use('/static', express.static('static'))
@@ -12,6 +17,13 @@ app.use('/test-report', express.static('jest/coverage/lcov-report'))
 //     console.log('pa', pa)
 //     res.sendFile(pa)
 // })
-app.use(serverRenderer())
+app.use('/search/:query', checkQuery)
+app.use(serverRenderer(stats))
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+Loadable.preloadAll().then(() => {
+    app.listen(3000, () => {
+        console.log('Running on http://localhost:3000/')
+    })
+}).catch(err => {
+    console.log(err)
+})

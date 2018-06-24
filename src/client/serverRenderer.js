@@ -1,10 +1,12 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import Loadable from 'react-loadable'
+import { getBundles } from 'react-loadable/webpack'
 import Root from './Root'
 import configureStore from './store'
 
-function renderHTML(html, preloadedState) {
+function renderHTML(html, bundles, preloadedState) {
     return `<!doctype html>
             <html>
             <head>
@@ -20,26 +22,44 @@ function renderHTML(html, preloadedState) {
                     window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
                 </script>
                 <script src="/main.bundle.js"></script>
+                ${bundles.map(bundle => {
+                    return `<script src="/dist/${bundle.file}"></script>`
+                }).join('\n')}
+                <script>window.main();</script>
             </body>
             </html>`
 }
 
-export default function serverRenderer() {
+export default function serverRenderer(stats) {
     return (req, res) => {
         const { store } = configureStore()
         const context = {}
         console.log('req.url=========', req.url)
-        const root = (
-            <Root
-                context={context}
-                location={req.url}
-                Router={StaticRouter}
-                store={store}
-            />
+
+        let modules = []
+        // const root = (
+        //     <Root
+        //         context={context}
+        //         location={req.url}
+        //         Router={StaticRouter}
+        //         store={store}
+        //     />
+        // )
+
+        const htmlString = renderToString(
+            <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+                <Root
+                    context={context}
+                    location={req.url}
+                    Router={StaticRouter}
+                    store={store}
+                />
+            </Loadable.Capture>
         )
 
-        const htmlString = renderToString(root)
+        let bundles = getBundles(stats, modules)
 
+        console.log('modules===', modules)
         // context.url will contain the URL to redirect to if a <Redirect> was used
         if (context.url) {
             res.writeHead(302, {
@@ -53,6 +73,6 @@ export default function serverRenderer() {
 
         const preloadedState = store.getState()
 
-        res.send(renderHTML(htmlString, preloadedState))
+        res.send(renderHTML(htmlString, bundles, preloadedState))
     }
 }
