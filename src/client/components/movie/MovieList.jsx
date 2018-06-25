@@ -1,9 +1,17 @@
+/* @flow */
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { MovieListUl } from './MovieListStyled'
 
-function MovieList(props) {
-	const movies = props.movies || []
+type Props = {
+	movies: Object,
+	showTopBar: boolean
+}
+
+function MovieList(props: Props) {
+	const movies = props.movies
+
 	// let movieListItems = []
 
 	// for (let key in movies) {
@@ -30,6 +38,11 @@ function MovieList(props) {
 				)}
 			</div>
 		)
+}
+
+MovieList.defaultProps = {
+	movies: [],
+	showTopBar: false
 }
 
 function MovieListItem(props) {

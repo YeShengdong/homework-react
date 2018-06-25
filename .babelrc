@@ -1,4 +1,4 @@
 {
-	presets: ['env', 'react', 'stage-2'],
+	presets: ['env', 'react', 'stage-2', 'flow'],
     plugins: ['syntax-dynamic-import', 'react-loadable/babel']
 }
