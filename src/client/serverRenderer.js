@@ -1,6 +1,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import { ServerStyleSheet } from 'styled-components'
 import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
 import Root from './Root'
@@ -34,11 +35,12 @@ export default function serverRenderer(stats) {
     return (req, res) => {
         const { store } = configureStore()
         const context = {}
+        const sheet = new ServerStyleSheet()
         console.log('req.url=========', req.url)
 
         let modules = []
 
-        const htmlString = renderToString(
+        const htmlString = renderToString(sheet.collectStyles(
             <Loadable.Capture report={moduleName => modules.push(moduleName)}>
                 <Root
                     context={context}
@@ -47,8 +49,10 @@ export default function serverRenderer(stats) {
                     store={store}
                 />
             </Loadable.Capture>
-        )
+        ))
 
+        const styleTags = sheet.getStyleTags()
+        console.log("styleTags===", styleTags)
         const bundles = getBundles(stats, modules)
 
         console.log('modules===', modules)

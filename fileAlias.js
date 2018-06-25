@@ -6,6 +6,7 @@ const clientDir = path.join(rootDir, 'src/client')
 const libDir = clientDir + '/lib/'
 const containerDir = clientDir + '/containers/'
 const componentDir = clientDir + '/components/'
+const publicDir = clientDir + '/public/'
 
 module.exports = {
 	/*
@@ -52,5 +53,10 @@ module.exports = {
 	Radio: componentDir + 'form/Radio',
 	MovieSearch: componentDir + 'movie/MovieSearch',
 	MovieCover: componentDir + 'movie/MovieCover',
-	MovieList: componentDir + 'movie/MovieList'
+	MovieList: componentDir + 'movie/MovieList',
+
+	/*
+	 * Public
+	 */
+	commonStyled: publicDir + 'styles/commonStyled'
 }

@@ -1,7 +1,8 @@
 import React from 'react'
+import { LoaderLayer, LoaderText } from './LoaderStyled'
 
 const Loader = ({ loading }) => (
-	loading && <div id="loader"><p className="text">Loading...</p></div>
+	loading && <LoaderLayer><LoaderText>Loading...</LoaderText></LoaderLayer>
 )
 
 Loader.defaultProps = {

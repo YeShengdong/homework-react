@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { MovieListUl } from './MovieListStyled'
 
 function MovieList(props) {
 	const movies = props.movies || []
@@ -21,9 +22,9 @@ function MovieList(props) {
 					</div>
 				}
 		      	{Object.keys(movies).length ? (
-					<ul className="flex">
+					<MovieListUl>
 						{movieListItems}
-					</ul>
+					</MovieListUl>
 				) : (
 					<p className="emptyMsg">No films found</p>
 				)}
