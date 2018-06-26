@@ -98,7 +98,6 @@ export const fetchMovie = id => (dispatch, getState) => {
 	return API
 			.request(reqParams).then(res => {
 				dispatch(fetchMovieSuccess(res))
-				dispatch(fetchRelateMovies())
 			})
 			.catch(e => {
 				dispatch({ type: FETCH_MOVIE_FAILURE })

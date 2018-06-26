@@ -26,6 +26,11 @@ module.exports = {
 	actions: clientDir + '/actions',
 
 	/*
+	 * Selectors
+	 */
+	selectors: clientDir + '/selectors',
+
+	/*
 	 * Reducers
 	 */
 	reducers: clientDir + '/reducers',

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchMovie } from 'actions'
+import { fetchMovie, fetchRelateMovies } from 'actions'
 import Header from 'Header'
 import Footer from 'Footer'
 import MovieCover from 'MovieCover'
@@ -13,13 +13,15 @@ class MovieDetailPage extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchMovie(this.props.match.params.id)
+		this.props.fetchMovie(this.props.movieId).then((res) => {
+			this.props.fetchRelateMovies()
+		})
 	}
 
     componentWillReceiveProps(nextProps) {
-    	const id = nextProps.match.params.id
+    	const id = nextProps.movieId
 
-    	if (id !== this.props.match.params.id) {
+    	if (id !== this.props.movieId) {
     		this.props.fetchMovie(id)
     	}
     }
@@ -39,19 +41,21 @@ class MovieDetailPage extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
 	const movie = state.movie
-
+	console.log(props)
 	return {
 		list: movie.relateList,
 		movie: movie.detail,
-		loading: movie.loading
+		loading: movie.loading,
+		movieId: props.match.params.id
 	}
 }
 
 export default connect(
 	mapStateToProps,
 	{ 
-		fetchMovie
+		fetchMovie,
+		fetchRelateMovies
 	}
 )(MovieDetailPage)

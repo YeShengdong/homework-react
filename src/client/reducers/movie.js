@@ -18,7 +18,6 @@ import {
 
 const initialState = {
 	list: [],
-	count: 0,
 	conditions: {
 		text: '',
 		searchBy: '',
@@ -66,7 +65,6 @@ const movie = (state = initialState, action) => {
 
 			return Object.assign({}, state, {
 				list: list,
-				count: list.length,
 				loading: false
 			})
 		case FETCH_MOVIES_FAILURE:

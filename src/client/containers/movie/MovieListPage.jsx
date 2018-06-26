@@ -6,6 +6,7 @@ import {
 	setSearchBy,
 	setSortBy
 } from 'actions'
+import { getMovieCount } from 'selectors'
 
 import Header from 'Header'
 import Footer from 'Footer'
@@ -96,7 +97,7 @@ const mapStateToProps = (state) => {
 		conditions: movie.conditions,
 		searchBys: movie.searchBys,
 		sortBys: movie.sortBys,
-		count: movie.count,
+		count: getMovieCount(state),
 		loading: movie.loading
 	}
 }
